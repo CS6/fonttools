@@ -11,7 +11,7 @@ def maxCtxFont(font):
         if tag not in font:
             continue
         table = font[tag].table
-        if table.LookupList is None:
+        if getattr(table, 'LookupList', None) is None:
             continue
         for lookup in table.LookupList.Lookup:
             for st in lookup.SubTable:
@@ -37,7 +37,7 @@ def maxCtxSubtable(maxCtx, tag, lookupType, st):
     elif tag == 'GSUB' and lookupType == 4:
         for ligatures in st.ligatures.values():
             for ligature in ligatures:
-                maxCtx = max(maxCtx, ligature.CompCount)
+                maxCtx = max(maxCtx, getattr(ligature, 'CompCount', 0))
 
     # context
     elif (tag == 'GPOS' and lookupType == 7) or (
