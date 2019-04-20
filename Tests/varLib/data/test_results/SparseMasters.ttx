@@ -100,7 +100,7 @@
     <sCapHeight value="700"/>
     <usDefaultChar value="0"/>
     <usBreakChar value="32"/>
-    <usMaxContext value="4"/>
+    <usMaxContext value="0"/>
   </OS_2>
 
   <hmtx>
