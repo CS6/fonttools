@@ -3,6 +3,7 @@ from fontTools.misc.py23 import *
 from fontTools.misc import sstruct
 from fontTools.misc.textTools import safeEval, num2binary, binary2num
 from fontTools.ttLib.tables import DefaultTable
+from .maxContextCalc import maxCtxFont
 import logging
 
 
@@ -126,6 +127,7 @@ class table_O_S_2f_2(DefaultTable.DefaultTable):
 
 	def compile(self, ttFont):
 		self.updateFirstAndLastCharIndex(ttFont)
+		self.usMaxContext = maxCtxFont(ttFont)
 		panose = self.panose
 		head = ttFont["head"]
 		if (self.fsSelection & 1) and not (head.macStyle & 1<<1):
